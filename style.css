@@ -1,0 +1,86 @@
+* { margin: 0; padding : 0; }
+header {
+    background-color: black;
+    color: rgb(120, 175, 238);
+    padding: 30px;
+    position:fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    background-color: black;
+}
+
+footer {
+    background-color: black;
+    color: lightblue;
+    padding: 10px;
+    margin-top: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0%;
+}
+
+body {
+    background-color: #212121;
+    color: lightblue; 
+    padding: 10%;
+}
+
+.Oceanic {
+    background-color: #AFAFAF;
+    
+}
+
+.puzzle{
+    align-items:center;
+    align-self: center;
+    justify-content: center;
+}
+
+.cell{
+    min-width: 25px;
+    height: 25px;
+    border: 1px solid rgb(112, 112, 112);
+    border-spacing:0;
+    border-collapse: collapse;
+    background-color: rgb(209, 209, 209);
+}
+
+.cell:hover{
+    background-color: rgb(120, 175, 238);
+}
+
+.cell.selected{
+    background-color:rgb(9, 89, 182);
+}
+
+.cell.rselected{
+    background-color:chocolate;
+}
+
+.buttonselect{
+    border: gray;
+    border-radius: 10px;
+    border-style: dashed;
+    border-width: 3px;
+    padding: 2%;
+    margin: 2%;
+}
+
+.cell.firstrow{
+    background-color: #212121;
+	line-height: 1.3;
+	padding-bottom: 5px;
+	text-align: center;
+	vertical-align: bottom;
+    border-top: 0px;
+}
+.cell.firstcol {
+    background-color: #212121;
+	min-width: 25px;
+	padding-right: 10px;
+	text-align: right;
+	vertical-align: middle;
+    border-left: 0px;
+}
