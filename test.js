@@ -78,6 +78,7 @@ function rebuildTable(){
 }
 
 function handleCellClick(element){
+    
     element.classList.add("selected");
 }
 function handleCellRightclick(element){
