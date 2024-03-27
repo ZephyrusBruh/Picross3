@@ -33,6 +33,7 @@ body {
 }
 
 .puzzle{
+    padding: 15PX;
     align-items:center;
     align-self: center;
     justify-content: center;

@@ -2,8 +2,9 @@ var mode = '';
 const button = document.getElementById("testButton");
 const table = document.getElementById("board");
 const dimenstionSelect = document.getElementById("dimensions");
+const cell = document.getElementsByClassName("cell")
 document.addEventListener('contextmenu', event => event.preventDefault());
-
+window.onload = start();
     
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -14,9 +15,10 @@ function updateVariable() {
         break;
         }
     }
-    updateScheme(mode);
+    console.log(mode);
+    /*updateScheme(mode);*/
 }
-window.onload = start;
+
 /*function updateScheme(mode) {
     switch(mode){
         case mode:
@@ -35,7 +37,7 @@ function start(){
             if(j == 0){
                 classes += " firstcol";
             }
-            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)"></td>`;
+            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
         }
         row += "</tr>";
         tablehtml+= row;
@@ -66,7 +68,7 @@ function rebuildTable(){
             if(j == 0){
                 classes += " firstcol";
             }
-            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)"></td>`;
+            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
         }
         row += "</tr>";
         tablehtml+= row;
@@ -74,16 +76,6 @@ function rebuildTable(){
     tablehtml += "</tbody>";
     table.innerHTML = tablehtml;
 }
-
-// Function to handle right click
-function handleRightClick(event) {
-    alert("What... why did you do that? Go away, stop looking at me!");
-    // Prevent the default right-click context menu from showing up
-    event.preventDefault();
-    
-}
-
-
 
 function handleCellClick(element){
     element.classList.add("selected");
@@ -96,6 +88,3 @@ function handleCellRightclick(element){
 
 // Add event listener for left click
 button.addEventListener("click", handleLeftClick);
-
-// Add event listener for right click
-button.addEventListener("contextmenu", handleRightClick);
