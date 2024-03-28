@@ -16,15 +16,18 @@ function updateVariable() {
         }
     }
     console.log(mode);
-    /*updateScheme(mode);*/
+    /*updateTheme(mode);*/
 }
 
-/*function updateScheme(mode) {
+/*function updateTheme(mode) {
     switch(mode){
         case mode:
             
     }
 }*/
+function what(){
+
+}
 function start(){
     let tablehtml =  "<tbody>";
     for(let i = 0; i <= 10; i++){
@@ -53,6 +56,7 @@ function handleLeftClick(event) {
 }
 
 function rebuildTable(){
+    getRandomBinary();
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
@@ -89,3 +93,14 @@ function handleCellRightclick(element){
 
 // Add event listener for left click
 button.addEventListener("click", handleLeftClick);
+
+
+function getRandomBinary() {
+    const randomNum = Math.random();
+    const binaryValue = Math.round(randomNum);
+
+    return binaryValue;
+}
+
+const randomBinary = getRandomBinary();
+console.log(randomBinary); 
