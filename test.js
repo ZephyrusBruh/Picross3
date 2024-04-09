@@ -15,7 +15,6 @@ function updateVariable() {
         break;
         }
     }
-    console.log(mode);
     Style(mode);
 }
 
@@ -25,15 +24,12 @@ function Style(mode){
     body.className = '';
     switch(mode){
         case "Oceanic":
-            console.log("Oceanic Style");
-            body.classList.add("oceanic");
+            body.className = '';
             break;
         case "Reef":
-            console.log("Reef Style");
             body.classList.add('reef');
             break;
         case "Whale":
-            console.log("Whale Style");
             body.classList.add('whale');
             break;
     }

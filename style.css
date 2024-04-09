@@ -22,18 +22,13 @@ footer {
 }
 
 body {
-    background-color: #212121;
-    color: lightblue; 
-    padding: 10%;
-}
-
-body.oceanic {
     background-color: #AFAFAF;
     color: darkblue;
+    padding: 10%;
 }
 body.reef {
     background-color: #212121;
-    color: darkblue;
+    color: rgb(120, 175, 238);
 }
 body.whale {
     background-color: #2d44ad;
