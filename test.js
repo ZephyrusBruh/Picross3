@@ -21,16 +21,21 @@ function updateVariable() {
 
 
 function Style(mode){
+    var body = document.body;
+    body.className = '';
     switch(mode){
         case "Oceanic":
-            console.log("butt");
-            $('body').addClass("oceanic");
+            console.log("Oceanic Style");
+            body.classList.add("oceanic");
+            break;
         case "Reef":
-            console.log("butt1");
-            $('body').addClass('reef');
+            console.log("Reef Style");
+            body.classList.add('reef');
+            break;
         case "Whale":
-            console.log("butt2");
-            $('body').addClass('whale')
+            console.log("Whale Style");
+            body.classList.add('whale');
+            break;
     }
 
 

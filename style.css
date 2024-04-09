@@ -32,12 +32,12 @@ body.oceanic {
     color: darkblue;
 }
 body.reef {
-    background-color: #AFAFAF;
+    background-color: #212121;
     color: darkblue;
 }
 body.whale {
-    background-color: #AFAFAF;
-    color: darkblue;
+    background-color: #2d44ad;
+    color: white;
 }
 
 .puzzle{
