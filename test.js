@@ -16,20 +16,28 @@ function updateVariable() {
         }
     }
     console.log(mode);
-    /*updateTheme(mode);*/
+    Style(mode);
 }
 
-/*function updateTheme(mode) {
+
+function Style(mode){
     switch(mode){
-        case mode:
-            
+        case "Oceanic":
+            console.log("butt");
+            $('body').addClass("oceanic");
+        case "Reef":
+            console.log("butt1");
+            $('body').addClass('reef');
+        case "Whale":
+            console.log("butt2");
+            $('body').addClass('whale')
     }
-}*/
-function what(){
+
 
 }
 function start(){
     let tablehtml =  "<tbody>";
+    let colors = " butt"
     for(let i = 0; i <= 10; i++){
         let row = "<tr>";
         for(let j = 0; j <= 10; j++){

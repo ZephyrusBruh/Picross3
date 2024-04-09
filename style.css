@@ -27,9 +27,17 @@ body {
     padding: 10%;
 }
 
-.Oceanic {
+body.oceanic {
     background-color: #AFAFAF;
-    
+    color: darkblue;
+}
+body.reef {
+    background-color: #AFAFAF;
+    color: darkblue;
+}
+body.whale {
+    background-color: #AFAFAF;
+    color: darkblue;
 }
 
 .puzzle{
@@ -70,7 +78,7 @@ body {
 }
 
 .cell.firstrow{
-    background-color: #212121;
+    background-color: transparent;
 	line-height: 1.3;
 	padding-bottom: 5px;
 	text-align: center;
@@ -78,7 +86,7 @@ body {
     border-top: 0px;
 }
 .cell.firstcol {
-    background-color: #212121;
+    background-color: transparent;
 	min-width: 25px;
 	padding-right: 10px;
 	text-align: right;
