@@ -37,25 +37,7 @@ function Style(mode){
 
 }
 function start(){
-    let tablehtml =  "<tbody>";
-    let colors = " butt"
-    for(let i = 0; i <= 10; i++){
-        let row = "<tr>";
-        for(let j = 0; j <= 10; j++){
-            let classes = "cell";
-            if(i == 0){
-                classes += " firstrow";
-            }
-            if(j == 0){
-                classes += " firstcol";
-            }
-            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
-        }
-        row += "</tr>";
-        tablehtml+= row;
-    }
-    tablehtml += "</tbody>";
-    table.innerHTML = tablehtml;
+    buildTable(10,10);
 }
 // Function to handle left click
 function handleLeftClick(event) {
@@ -69,25 +51,7 @@ function rebuildTable(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
-
-    let tablehtml =  "<tbody>";
-    for(let i = 0; i <= rows; i++){
-        let row = "<tr>";
-        for(let j = 0; j <= cols; j++){
-            let classes = "cell";
-            if(i == 0){
-                classes += " firstrow";
-            }
-            if(j == 0){
-                classes += " firstcol";
-            }
-            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
-        }
-        row += "</tr>";
-        tablehtml+= row;
-    }
-    tablehtml += "</tbody>";
-    table.innerHTML = tablehtml;
+    buildTable(rows,cols);
 }
 
 function handleCellClick(element){
@@ -113,3 +77,27 @@ function getRandomBinary() {
 
 const randomBinary = getRandomBinary();
 console.log(randomBinary); 
+
+function buildTable(rows, cols){
+    let tablehtml =  "<tbody>";
+    for(let i = 0; i <= rows; i++){
+        let row = "<tr>";
+        for(let j = 0; j <= cols; j++){
+            let classes = "cell";
+            if(i == 0){
+                classes += " firstrow";
+            } else {
+                classes += " " + getRandomBinary();
+            }
+            if(j == 0){
+                classes += " firstcol";
+            }
+            
+            row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
+        }
+        row += "</tr>";
+        tablehtml+= row;
+    }
+    tablehtml += "</tbody>";
+    table.innerHTML = tablehtml;
+}
