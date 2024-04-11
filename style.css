@@ -31,8 +31,14 @@ body.reef {
     color: rgb(120, 175, 238);
 }
 body.whale {
-    background-color: #2d44ad;
+    background-image: url("https://f2.toyhou.se/file/f2-toyhou-se/images/80465306_NBCviyvUGpW1V0s.png?1712839285");
+    background-repeat: repeat;
     color: white;
+    text-shadow:
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
 }
 
 .puzzle{
