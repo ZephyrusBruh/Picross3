@@ -71,7 +71,8 @@ body.whale {
 }
 
 .cell.wrong{
-    background-color: red;
+    color: red;
+    
 }
 
 .buttonselect{
