@@ -59,10 +59,30 @@ function rebuildTable(){
 
 
 function handleCellClick(element){
-    element.classList.add("selected");
+    if(element.dataset.binary == 1){
+        if(element.classList != "cell rselected"){
+        element.classList.add("selected");
+        }
+    }
+    if(element.dataset.binary == 0){
+        if(element.classList != "cell rselected"){
+            element.classList.add("wrong");
+            }
+    }
+
+    
 }
 function handleCellRightclick(element){
-    element.classList.add("rselected");
+    if(element.dataset.binary == 1){
+        if(element.classList != "cell selected"){
+        element.classList.add("wrong");
+        }
+    }
+    if(element.dataset.binary == 0){
+        if(element.classList != "cell selected"){
+            element.classList.add("rselected");
+            }
+    }
 }
 
 
@@ -157,5 +177,4 @@ function numbers(rows,cols){
         
     }
     console.log(rowhints, colhints);
-}
-
+    }
