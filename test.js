@@ -6,7 +6,7 @@ const cell = document.getElementsByClassName("cell")
 document.addEventListener('contextmenu', event => event.preventDefault());
 window.onload = start();
 const randomBinary = getRandomBinary();
-
+button.addEventListener("click", handleLeftClick);
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -59,16 +59,17 @@ function rebuildTable(){
 
 
 function handleCellClick(element){
-    if(element.dataset.binary == 1){
-        if(element.classList != "cell rselected"){
-        element.classList.add("selected");
-        }
-    }
     if(element.dataset.binary == 0){
         if(element.classList != "cell rselected"){
             element.classList.add("wrong");
             }
     }
+    if(element.dataset.binary == 1){
+        if(element.classList != "cell rselected"){
+        element.classList.add("selected");
+        }
+    }
+    
 
     
 }
@@ -86,8 +87,6 @@ function handleCellRightclick(element){
 }
 
 
-// Add event listener for left click
-button.addEventListener("click", handleLeftClick);
 
 
 function getRandomBinary() {
@@ -110,9 +109,12 @@ function buildTable(rows, cols){
             if(j == 0){
                 classes += " firstcol";
             }
-            let binary =  getRandomBinary();
-            
-            row += `<td class="${classes}" data-row="${i}" data-col="${j}" data-binary="${binary}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
+            if (i != 0 && j != 0){
+                let binary =  getRandomBinary();
+                row += `<td class="${classes}" data-row="${i}" data-col="${j}" data-binary="${binary}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
+            } else {
+                row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
+            }                      
         }
         row += "</tr>";
         tablehtml+= row;
@@ -122,59 +124,73 @@ function buildTable(rows, cols){
     console.log("board")
     numbers(rows, cols);
 }
+
 function numbers(rows,cols){
     let rowhints = "";
     let colhints = "";
     let count = 0;
     console.log("numbers!")
 
-    for(let i = 0; i <= rows; i++){
+    for(let i = 0; i < rows; i++){
         count = 0;
         let cells = document.querySelectorAll(`[data-row="${i+1}"]`)
         for(let c = 0; c < cells.length; c++){
             if(cells[c].dataset.binary == 1){
                 count += 1;
+                //rowhints += count;
             }else {
-                console.log(`row: ${i} cellgroup: ${count}`);
-                count = 0
-                /*if(rowhint != ""){
-                    rowhint += " , ";
-                    count = 0
+                //console.log(`row: ${i} cellgroup: ${count}`);
+                if(rowhints != "" && count > 0){
+                    rowhints += " " + count;
+                    count = 0;
                 } else {
-                    count = 0
-                }*/
+                    if(count > 0){
+                        rowhints += count;
+                        count = 0;
+                    }
+                }
             }
-            
         }
         if (count > 0){
-            console.log(`row: ${i} cellgroup: ${count}`);
-            count = 0;
+            //console.log(`row: ${i} cellgroup: ${count}`);
+            rowhints += " " + count;
         }
-
+        count = 0;
+        let hintcell = document.querySelectorAll(`.firstcol`)[i+1];
+        hintcell.innerHTML = rowhints;
+        rowhints = "";
     }
-    for(let j = 0; j <= cols; j++){
+    console.log("step 0");
+
+
+    for(let j = 0; j < cols; j++){
         count = 0;
         let cells = document.querySelectorAll(`[data-col="${j+1}"]`)
         for(let c = 0; c < cells.length; c++){
             if(cells[c].dataset.binary == 1){
                 count += 1;
+
             }else {
-                console.log(`col: ${j} cellgroup: ${count}`);
-                count = 0
-                /*if(rowhint != ""){
-                    rowhint += " , ";
+                if(colhints != "" && count > 0){
+                    colhints += " " + count
                     count = 0
+
                 } else {
-                    count = 0
-                }*/
-            }
-            
+                    if(count > 0){
+                        rowhints += count;
+                        count = 0;
+                    }
+                }
+            }            
         }
         if (count > 0){
-            console.log(`row: ${j} cellgroup: ${count}`);
-            count = 0;
+            //console.log(`row: ${j} cellgroup: ${count}`);
+            colhints += " " + count;
         }
-        
+        count = 0;
+        let hintcell = document.querySelectorAll('.firstrow')[j+1];
+        hintcell.innerHTML = colhints;
+        colhints = "";      
     }
-    console.log(rowhints, colhints);
-    }
+}
+

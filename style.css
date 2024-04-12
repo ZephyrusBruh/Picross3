@@ -27,11 +27,11 @@ body {
     padding: 10%;
     font-size: 25px;
 }
-body.reef {
+.reef {
     background-color: #212121;
     color: rgb(120, 175, 238);
 }
-body.whale {
+.whale {
     background-image: url("https://f2.toyhou.se/file/f2-toyhou-se/images/80465306_NBCviyvUGpW1V0s.png?1712839285");
     background-repeat: repeat;
     color: white;
@@ -101,4 +101,7 @@ body.whale {
     border-left: 0px;
 }
 
-
+em {
+    color: #ccc;
+    text-decoration: line-through;
+}
