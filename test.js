@@ -206,6 +206,14 @@ function endGame(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
+    total = cols * rows;
+    if(guesses == total && wrongguesses == 0){
+        console.log("Perfect");
+    } elseif(guesses = total){
+        console.log("Finished");
+    } elseif(guesses != total){
+        console.log("Not Done");
+    }
 
 }
 
