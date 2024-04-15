@@ -1,13 +1,7 @@
 * { margin: 0; padding : 0; }
-header {
-    background-color: black;
+h1 {
     color: rgb(120, 175, 238);
-    padding: 30px;
-    position:fixed;
-    left:0;
-    top:0;
     width: 100%;
-    background-color: black;
 }
 
 footer {
@@ -19,6 +13,12 @@ footer {
     bottom: 0;
     width: 100%;
     left: 0%;
+}
+button{
+    padding: 1px;
+}
+select{
+    padding: 1px;
 }
 
 body {
@@ -70,8 +70,8 @@ body {
     background-color:#EDD690;
 }
 
-.cell.wrong{
-    color: red;
+.wrong{
+    background-color: red;
     
 }
 

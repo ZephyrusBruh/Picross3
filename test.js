@@ -7,6 +7,8 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 window.onload = start();
 const randomBinary = getRandomBinary();
 button.addEventListener("click", handleLeftClick);
+var guesses =0;
+var wrongguesses =0;
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -39,6 +41,7 @@ function Style(mode){
 
 
 function start(){
+    updateVariable();
     buildTable(10,10);
 }
 
@@ -54,36 +57,42 @@ function rebuildTable(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
+    guesses = 0;
+    wrongguesses = 0;
     buildTable(rows,cols);
 }
 
 
 function handleCellClick(element){
-    if(element.dataset.binary == 0){
-        if(element.classList != "cell rselected"){
-            element.classList.add("wrong");
-            }
-    }
     if(element.dataset.binary == 1){
-        if(element.classList != "cell rselected"){
+        if(element.classList != "cell rselected" && element.classList != "wrong"){
         element.classList.add("selected");
         }
     }
-    
+    if(element.dataset.binary == 0){
+        if(element.classList != "cell rselected"){
+            element.classList.add("wrong");
+            wrongguesses +=1;
+            }
+    }
+    guesses += 1;
 
     
 }
 function handleCellRightclick(element){
     if(element.dataset.binary == 1){
         if(element.classList != "cell selected"){
-        element.classList.add("wrong");
+            element.classList.add("wrong");
+            wrong += 1;
+
         }
     }
     if(element.dataset.binary == 0){
-        if(element.classList != "cell selected"){
+        if(element.classList != "cell selected" && element.classList != "wrong"){
             element.classList.add("rselected");
             }
     }
+    guesses += 1;
 }
 
 
@@ -95,9 +104,9 @@ function getRandomBinary() {
     return binaryValue;
 }
 
-
-
 function buildTable(rows, cols){
+    guesses = 0;
+    wrongguesses = 0;
     let tablehtml =  "<tbody>";
     for(let i = 0; i <= rows; i++){
         let row = "<tr>";
@@ -162,7 +171,6 @@ function numbers(rows,cols){
     }
     console.log("step 0");
 
-
     for(let j = 0; j < cols; j++){
         count = 0;
         let cells = document.querySelectorAll(`[data-col="${j+1}"]`)
@@ -172,25 +180,35 @@ function numbers(rows,cols){
 
             }else {
                 if(colhints != "" && count > 0){
-                    colhints += " " + count
+                    colhints += " " + count + "<br>";
                     count = 0
 
                 } else {
                     if(count > 0){
-                        rowhints += count;
+                        colhints += count + "<br>";
                         count = 0;
                     }
                 }
             }            
         }
         if (count > 0){
-            //console.log(`row: ${j} cellgroup: ${count}`);
             colhints += " " + count;
         }
         count = 0;
         let hintcell = document.querySelectorAll('.firstrow')[j+1];
         hintcell.innerHTML = colhints;
+        console.log(colhints);
         colhints = "";      
     }
 }
 
+function endGame(){
+    let selectedDims = dimenstionSelect.value.split("x");
+    let rows = selectedDims[0];
+    let cols = selectedDims[1];
+
+}
+
+function crossOuts(rows, cols){
+    
+}
