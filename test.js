@@ -7,8 +7,8 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 window.onload = start();
 const randomBinary = getRandomBinary();
 button.addEventListener("click", handleLeftClick);
-var guesses =0;
-var wrongguesses =0;
+var guesses = 0;
+var wrongguesses = 0;
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -49,7 +49,7 @@ function start(){
 // Function to handle left click
 function handleLeftClick(event) {
     rebuildTable();
-    event.preventDefault();
+    updateWrong();
 }
 
 
@@ -76,8 +76,8 @@ function handleCellClick(element){
             }
     }
     guesses += 1;
-
-    
+    endGame();
+    updateWrong();
 }
 function handleCellRightclick(element){
     if(element.dataset.binary == 1){
@@ -93,6 +93,8 @@ function handleCellRightclick(element){
             }
     }
     guesses += 1;
+    endGame();
+    updateWrong();
 }
 
 
@@ -130,7 +132,7 @@ function buildTable(rows, cols){
     }
     tablehtml += "</tbody>";
     table.innerHTML = tablehtml;
-    console.log("board")
+
     numbers(rows, cols);
 }
 
@@ -138,7 +140,6 @@ function numbers(rows,cols){
     let rowhints = "";
     let colhints = "";
     let count = 0;
-    console.log("numbers!")
 
     for(let i = 0; i < rows; i++){
         count = 0;
@@ -146,9 +147,8 @@ function numbers(rows,cols){
         for(let c = 0; c < cells.length; c++){
             if(cells[c].dataset.binary == 1){
                 count += 1;
-                //rowhints += count;
+
             }else {
-                //console.log(`row: ${i} cellgroup: ${count}`);
                 if(rowhints != "" && count > 0){
                     rowhints += " " + count;
                     count = 0;
@@ -161,7 +161,6 @@ function numbers(rows,cols){
             }
         }
         if (count > 0){
-            //console.log(`row: ${i} cellgroup: ${count}`);
             rowhints += " " + count;
         }
         count = 0;
@@ -169,7 +168,6 @@ function numbers(rows,cols){
         hintcell.innerHTML = rowhints;
         rowhints = "";
     }
-    console.log("step 0");
 
     for(let j = 0; j < cols; j++){
         count = 0;
@@ -197,7 +195,6 @@ function numbers(rows,cols){
         count = 0;
         let hintcell = document.querySelectorAll('.firstrow')[j+1];
         hintcell.innerHTML = colhints;
-        console.log(colhints);
         colhints = "";      
     }
 }
@@ -206,15 +203,23 @@ function endGame(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
-    total = cols * rows;
+    var total = cols * rows;
+    
     if(guesses == total && wrongguesses == 0){
-        console.log("Perfect");
-    } elseif(guesses = total){
+        for(let c = 0; c < rows; c++){
+            c.classList = "perfect"
+        }
+    } else if(guesses == total){
         console.log("Finished");
-    } elseif(guesses != total){
+    } else if(guesses != total){
         console.log("Not Done");
     }
+    
 
+}
+
+function updateWrong(){
+    document.getElementById('wrongLbl').innerHTML = "Wrong counter: " + wrongguesses;
 }
 
 function crossOuts(rows, cols){

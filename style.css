@@ -1,7 +1,7 @@
 * { margin: 0; padding : 0; }
 h1 {
     color: rgb(120, 175, 238);
-    width: 100%;
+
 }
 
 footer {
@@ -24,7 +24,7 @@ select{
 body {
     background-color: #AFAFAF;
     color: darkblue;
-    padding: 10%;
+    padding: 30px;
     font-size: 25px;
 }
 .reef {
@@ -59,7 +59,7 @@ body {
 }
 
 .cell:hover{
-    background-color: rgb(120, 175, 238);
+    box-shadow: 0 0 9px 4px rgb(120, 175, 238) inset;
 }
 
 .cell.selected{
@@ -80,17 +80,19 @@ body {
     border-radius: 10px;
     border-style: dashed;
     border-width: 3px;
-    padding: 2%;
-    margin: 2%;
+    padding: 4px;
+    margin: 5px;
 }
 
 .cell.firstrow{
     background-color: transparent;
 	line-height: 1.3;
 	padding-bottom: 5px;
+    padding-top: 10px;
 	text-align: center;
 	vertical-align: bottom;
     border-top: 0px;
+    box-shadow: none;
 }
 .cell.firstcol {
     background-color: transparent;
@@ -99,9 +101,20 @@ body {
 	text-align: right;
 	vertical-align: middle;
     border-left: 0px;
+    box-shadow: none;
+}
+#puzzle td.cell:nth-child(5n + 1) {
+	border-right: 1px solid #555;
 }
 
 em {
     color: #ccc;
     text-decoration: line-through;
+}
+.wrongLbl{
+    padding: 10px;
+    border: gray;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 3px;
 }
