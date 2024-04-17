@@ -80,6 +80,12 @@ body {
 .emptyperfect{
     background-color: transparent;
 }
+.finished{
+    background-color: palevioletred;
+}
+.emptyfinished{
+    background-attachment: transparent;
+}
 
 .buttonselect{
     border: gray;

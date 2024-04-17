@@ -10,6 +10,7 @@ button.addEventListener("click", handleLeftClick);
 var guesses = 0;
 var wrongguesses = 0;
 var total = 0;
+var totalguesses = 0;
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -51,6 +52,7 @@ function start(){
 function handleLeftClick(event) {
     rebuildTable();
     updateWrong();
+    updateProgress();
 }
 
 
@@ -61,6 +63,7 @@ function rebuildTable(){
     guesses = 0;
     wrongguesses = 0;
     total = 0;
+    totalguesses =0;
     buildTable(rows,cols);
 }
 
@@ -70,6 +73,7 @@ function handleCellClick(element){
         if(element.classList != "cell rselected" && element.classList != "wrong"){
             element.classList.add("selected");
             guesses += 1;
+            totalguesses +=1
         }
     }
     if(element.dataset.binary == 0){
@@ -78,26 +82,27 @@ function handleCellClick(element){
             wrongguesses +=1;
             }
     }
-    
     endGame();
     updateWrong();
+    updateProgress();
 }
 function handleCellRightclick(element){
     if(element.dataset.binary == 1){
         if(element.classList != "cell selected"){
             element.classList.add("wrong");
             wrongguesses += 1;
-
         }
     }
     if(element.dataset.binary == 0){
         if(element.classList != "cell selected" && element.classList != "wrong"){
             element.classList.add("rselected");
+
         }
     }
     
     endGame();
     updateWrong();
+    updateProgress();
 }
 
 
@@ -113,6 +118,7 @@ function buildTable(rows, cols){
     guesses = 0;
     wrongguesses = 0;
     total = 0;
+    totalguesses = 0;
     let tablehtml =  "<tbody>";
     for(let i = 0; i <= rows; i++){
         let row = "<tr>";
@@ -207,8 +213,6 @@ function endGame(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
-    console.log(total);
-    console.log(guesses);
     if(guesses == total && wrongguesses == 0){
         for(let c = 0; c < rows; c++){
             let cells = document.querySelectorAll(`[data-row="${c+1}"]`)
@@ -225,7 +229,6 @@ function endGame(){
             
             });
         }
-        console.log("Perfect")
     } else if(guesses == total){
         console.log("Finished");
     } else if(guesses != total){
@@ -236,7 +239,12 @@ function endGame(){
 }
 
 function updateWrong(){
-    document.getElementById('wrongLbl').innerHTML = "Wrong counter: " + wrongguesses;
+    document.getElementById('wrongLbl').innerHTML = wrongguesses;
+}
+function updateProgress(){
+    progress = totalguesses / total;
+    progress = progress * 100;
+    document.getElementById('progressCounter').innerHTML = (progress.toFixed(1) + '%');
 }
 
 function crossOuts(rows, cols){
