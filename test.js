@@ -69,40 +69,49 @@ function rebuildTable(){
 
 
 function handleCellClick(element){
-    if(element.dataset.binary == 1){
-        if(element.classList != "cell rselected" && element.classList != "wrong"){
-            element.classList.add("selected");
-            guesses += 1;
-            totalguesses +=1
-        }
-    }
-    if(element.dataset.binary == 0){
-        if(element.classList != "cell rselected"){
-            element.classList.add("wrong");
-            wrongguesses +=1;
+    if (!element.classList.contains("perfect")){
+        if(element.dataset.binary == 1){
+          if(element.classList != "cell rselected" && element.classList != "wrong"){
+                if(element.classList != "cell selected"){
+                    guesses += 1;
+                    totalguesses +=1   
+                }
+                element.classList.add("selected");
             }
-    }
-    endGame();
-    updateWrong();
-    updateProgress();
-}
-function handleCellRightclick(element){
-    if(element.dataset.binary == 1){
-        if(element.classList != "cell selected"){
-            element.classList.add("wrong");
-            wrongguesses += 1;
-        }
-    }
-    if(element.dataset.binary == 0){
-        if(element.classList != "cell selected" && element.classList != "wrong"){
-            element.classList.add("rselected");
 
         }
+        if(element.dataset.binary == 0){
+            if(element.classList != "cell rselected"){
+                element.classList.add("wrong");
+                wrongguesses +=1;
+             }
+        }
+        endGame();
+        updateWrong();
+        updateProgress();
     }
+}
+function handleCellRightclick(element){
+    if (!element.classList.contains("perfect")){
+        if(element.dataset.binary == 1){
+            if(element.classList != "cell selected"){
+                element.classList.add("wrong");
+                if(element.classList != "cell rselected"){
+                    wrongguesses += 1;
+                }
+            }
+        }
+        if(element.dataset.binary == 0){
+            if(element.classList != "cell selected" && element.classList != "wrong"){
+                element.classList.add("rselected");
+
+            }
+        }
     
-    endGame();
-    updateWrong();
-    updateProgress();
+        endGame();
+        updateWrong();
+        updateProgress();
+    }   
 }
 
 
@@ -230,7 +239,21 @@ function endGame(){
             });
         }
     } else if(guesses == total){
-        console.log("Finished");
+        for(let c = 0; c < rows; c++){
+            let cells = document.querySelectorAll(`[data-row="${c+1}"]`)
+            cells.forEach(cell => {
+                if(cell.classList == "cell selected"){
+                    cell.classList.remove("selected");
+                    cell.classList.add("finished");
+                } else if(cell.classList == "cell rselected") {
+                    cell.classList.remove("rselected");
+                    cell.classList.add("emptyfinished");
+                } else {
+                    cell.classList.add("emptyfinished")
+                }
+            
+            });
+        }
     } else if(guesses != total){
         console.log("Not Done");
     }
