@@ -72,7 +72,13 @@ body {
 
 .wrong{
     background-color: red;
-    
+}
+
+.perfect{
+    background-color: pink;
+}
+.emptyperfect{
+    background-color: transparent;
 }
 
 .buttonselect{
@@ -103,6 +109,7 @@ body {
     border-left: 0px;
     box-shadow: none;
 }
+
 #puzzle td.cell:nth-child(5n + 1) {
 	border-right: 1px solid #555;
 }

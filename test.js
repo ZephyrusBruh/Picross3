@@ -9,6 +9,7 @@ const randomBinary = getRandomBinary();
 button.addEventListener("click", handleLeftClick);
 var guesses = 0;
 var wrongguesses = 0;
+var total = 0;
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -59,6 +60,7 @@ function rebuildTable(){
     let cols = selectedDims[1];
     guesses = 0;
     wrongguesses = 0;
+    total = 0;
     buildTable(rows,cols);
 }
 
@@ -66,7 +68,8 @@ function rebuildTable(){
 function handleCellClick(element){
     if(element.dataset.binary == 1){
         if(element.classList != "cell rselected" && element.classList != "wrong"){
-        element.classList.add("selected");
+            element.classList.add("selected");
+            guesses += 1;
         }
     }
     if(element.dataset.binary == 0){
@@ -75,7 +78,7 @@ function handleCellClick(element){
             wrongguesses +=1;
             }
     }
-    guesses += 1;
+    
     endGame();
     updateWrong();
 }
@@ -83,16 +86,16 @@ function handleCellRightclick(element){
     if(element.dataset.binary == 1){
         if(element.classList != "cell selected"){
             element.classList.add("wrong");
-            wrong += 1;
+            wrongguesses += 1;
 
         }
     }
     if(element.dataset.binary == 0){
         if(element.classList != "cell selected" && element.classList != "wrong"){
             element.classList.add("rselected");
-            }
+        }
     }
-    guesses += 1;
+    
     endGame();
     updateWrong();
 }
@@ -109,6 +112,7 @@ function getRandomBinary() {
 function buildTable(rows, cols){
     guesses = 0;
     wrongguesses = 0;
+    total = 0;
     let tablehtml =  "<tbody>";
     for(let i = 0; i <= rows; i++){
         let row = "<tr>";
@@ -147,7 +151,7 @@ function numbers(rows,cols){
         for(let c = 0; c < cells.length; c++){
             if(cells[c].dataset.binary == 1){
                 count += 1;
-
+                total +=1;
             }else {
                 if(rowhints != "" && count > 0){
                     rowhints += " " + count;
@@ -203,12 +207,25 @@ function endGame(){
     let selectedDims = dimenstionSelect.value.split("x");
     let rows = selectedDims[0];
     let cols = selectedDims[1];
-    var total = cols * rows;
-    
+    console.log(total);
+    console.log(guesses);
     if(guesses == total && wrongguesses == 0){
         for(let c = 0; c < rows; c++){
-            c.classList = "perfect"
+            let cells = document.querySelectorAll(`[data-row="${c+1}"]`)
+            cells.forEach(cell => {
+                if(cell.classList == "cell selected"){
+                    cell.classList.remove("selected");
+                    cell.classList.add("perfect");
+                } else if(cell.classList == "cell rselected") {
+                    cell.classList.remove("rselected");
+                    cell.classList.add("emptyperfect");
+                } else {
+                    cell.classList.add("emptyperfect")
+                }
+            
+            });
         }
+        console.log("Perfect")
     } else if(guesses == total){
         console.log("Finished");
     } else if(guesses != total){
@@ -224,4 +241,10 @@ function updateWrong(){
 
 function crossOuts(rows, cols){
     
+}
+function sizeSet(rows, cols){
+    var max = 570;
+    var width, height;
+
+
 }
