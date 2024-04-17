@@ -7,12 +7,12 @@ h1 {
 footer {
     background-color: black;
     color: rgb(120, 175, 238);
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
-    position: fixed;
-    bottom: 0;
+    margin-bottom: 0;
     width: 100%;
     left: 0%;
+    position: absolute;
 }
 button{
     padding: 1px;
