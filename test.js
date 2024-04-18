@@ -11,6 +11,7 @@ var guesses = 0;
 var wrongguesses = 0;
 var total = 0;
 var totalguesses = 0;
+var progress = 0;
 
 // Function to update the variable based on selected radio button
 function updateVariable() {
@@ -43,8 +44,10 @@ function Style(mode){
 
 
 function start(){
-    updateVariable();
     buildTable(10,10);
+    updateVariable();
+    console.log(total);
+    updateProgress();
 }
 
 
@@ -64,7 +67,9 @@ function rebuildTable(){
     wrongguesses = 0;
     total = 0;
     totalguesses =0;
+    progress = 0
     buildTable(rows,cols);
+    updateProgress();
 }
 
 
@@ -126,7 +131,7 @@ function getRandomBinary() {
 function buildTable(rows, cols){
     guesses = 0;
     wrongguesses = 0;
-    total = 0;
+    total =0;
     totalguesses = 0;
     let tablehtml =  "<tbody>";
     for(let i = 0; i <= rows; i++){
@@ -265,6 +270,7 @@ function updateWrong(){
     document.getElementById('wrongLbl').innerHTML = wrongguesses;
 }
 function updateProgress(){
+    console.log("T: " + total);
     progress = totalguesses / total;
     progress = progress * 100;
     document.getElementById('progressCounter').innerHTML = (progress.toFixed(1) + '%');

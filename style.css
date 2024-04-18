@@ -117,7 +117,17 @@ body {
 }
 
 #puzzle td.cell:nth-child(5n + 1) {
-	border-right: 1px solid #555;
+	border-right: 1px solid #000000;
+}
+#puzzle td:nth-child(5n + 1) {
+	border-right: 1px solid #000000;
+}
+#puzzle tr:nth-child(5n + 1) td {
+	border-bottom: 1px solid #000000;
+}
+
+#puzzle tr:nth-child(5n + 2) td {
+	border-top: 1px solid #000000;
 }
 
 em {
