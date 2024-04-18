@@ -90,6 +90,7 @@ function handleCellClick(element){
         if(element.dataset.binary == 0){
             if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                 element.classList.add("wrong");
+                element.classList.add("rselected");
                 wrongguesses +=1;
              }
         }
@@ -103,14 +104,17 @@ function handleCellRightclick(element){
         if(element.dataset.binary == 1){
             if(element.classList != "cell selected"){
                 element.classList.add("wrong");
+                element.classList.add("selected");
                 if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                     wrongguesses += 1;
+                    
                 }
             }
         }
         if(element.dataset.binary == 0){
             if(element.classList != "cell selected" && !element.classList.contains("wrong")){
                 element.classList.add("rselected");
+
 
             }
         }

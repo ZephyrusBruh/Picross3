@@ -1,10 +1,11 @@
 * { margin: 0; padding : 0; }
 h1 {
-    color: rgb(120, 175, 238);
+    color: rgb(9, 9, 203);
 
 }
 
 footer {
+    
     text-align: center;
     background-color: black;
     color: rgb(120, 175, 238);
@@ -13,6 +14,7 @@ footer {
     margin-bottom: 0;
     width: 100%;
     left: 0%;
+    height: 70px;
     position: absolute;
 }
 button{
@@ -73,7 +75,7 @@ body {
 }
 
 .wrong{
-    background-color: red;
+    box-shadow: 0 0 4px 2px rgb(255, 0, 0) inset;
 }
 
 .perfect{
