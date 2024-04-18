@@ -13,6 +13,7 @@ var total = 0;
 var totalguesses = 0;
 var progress = 0;
 
+
 // Function to update the variable based on selected radio button
 function updateVariable() {
     var radios = document.getElementsByName('Mode');
@@ -29,6 +30,7 @@ function updateVariable() {
 function Style(mode){
     var body = document.body;
     body.className = '';
+    
     switch(mode){
         case "Oceanic":
             body.className = '';
@@ -76,7 +78,7 @@ function rebuildTable(){
 function handleCellClick(element){
     if (!element.classList.contains("perfect")){
         if(element.dataset.binary == 1){
-          if(element.classList != "cell rselected" && element.classList != "wrong"){
+          if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                 if(element.classList != "cell selected"){
                     guesses += 1;
                     totalguesses +=1   
@@ -86,7 +88,7 @@ function handleCellClick(element){
 
         }
         if(element.dataset.binary == 0){
-            if(element.classList != "cell rselected"){
+            if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                 element.classList.add("wrong");
                 wrongguesses +=1;
              }
@@ -101,13 +103,13 @@ function handleCellRightclick(element){
         if(element.dataset.binary == 1){
             if(element.classList != "cell selected"){
                 element.classList.add("wrong");
-                if(element.classList != "cell rselected"){
+                if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                     wrongguesses += 1;
                 }
             }
         }
         if(element.dataset.binary == 0){
-            if(element.classList != "cell selected" && element.classList != "wrong"){
+            if(element.classList != "cell selected" && !element.classList.contains("wrong")){
                 element.classList.add("rselected");
 
             }
@@ -273,6 +275,7 @@ function updateProgress(){
     console.log("T: " + total);
     progress = totalguesses / total;
     progress = progress * 100;
+    console.log("P: " + progress);
     document.getElementById('progressCounter').innerHTML = (progress.toFixed(1) + '%');
 }
 
@@ -285,3 +288,6 @@ function sizeSet(rows, cols){
 
 
 }
+
+
+rebuildTable();
