@@ -48,7 +48,6 @@ function Style(mode){
 function start(){
     buildTable(10,10);
     updateVariable();
-    console.log(total);
     updateProgress();
 }
 
@@ -269,6 +268,7 @@ function endGame(){
         console.log("Not Done");
     }
     
+    
 
 }
 
@@ -276,21 +276,19 @@ function updateWrong(){
     document.getElementById('wrongLbl').innerHTML = wrongguesses;
 }
 function updateProgress(){
-    console.log("T: " + total);
     progress = totalguesses / total;
     progress = progress * 100;
-    console.log("P: " + progress);
     document.getElementById('progressCounter').innerHTML = (progress.toFixed(1) + '%');
 }
 
 function crossOuts(rows, cols){
-    
-}
-function sizeSet(rows, cols){
-    var max = 570;
-    var width, height;
-
-
+    var count = 0;
+     let cells = document.querySelectorAll(`[data-row="${c+1}"]`)
+        cells.forEach(cell => {
+            if (cell.classList != "cell"){
+                count +=1;
+            }
+    });
 }
 
 

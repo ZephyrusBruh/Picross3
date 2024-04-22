@@ -60,18 +60,22 @@ body {
     border-spacing:0;
     border-collapse: collapse;
     background-color: #a4a4a4;
+
+}
+.cell:hover{
+    background-color: rgb(41, 177, 102) 
 }
 
-.cell:hover{
-    box-shadow: 0 0 9px 4px rgb(120, 175, 238) inset;
-}
+
 
 .cell.selected{
     background-color:rgb(9, 89, 182);
+    box-shadow: 0 0 6px 3px rgb(7, 69, 139) inset;
 }
 
 .cell.rselected{
     background-color:#EDD690;
+    box-shadow: 0 0 6px 4px #E7C663 inset;
 }
 
 .wrong{
@@ -99,7 +103,9 @@ body {
     padding: 4px;
     margin: 5px;
 }
-
+.cell:hover{
+    box-shadow: 0 0 7px 4px rgb(30, 136, 78) inset;
+}
 .cell.firstrow{
     background-color: transparent;
 	line-height: 1.3;
