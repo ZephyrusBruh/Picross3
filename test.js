@@ -23,11 +23,11 @@ function updateVariable() {
         break;
         }
     }
-    Style(mode);
+    VisualStyle(mode);
 }
 
 
-function Style(mode){
+function VisualStyle(mode){
     var body = document.body;
     body.className = '';
     
@@ -121,6 +121,7 @@ function handleCellRightclick(element){
         endGame();
         updateWrong();
         updateProgress();
+        crossOuts();
     }   
 }
 
@@ -264,12 +265,8 @@ function endGame(){
             
             });
         }
-    } else if(guesses != total){
-        console.log("Not Done");
     }
     
-    
-
 }
 
 function updateWrong(){
@@ -282,14 +279,9 @@ function updateProgress(){
 }
 
 function crossOuts(rows, cols){
-    var count = 0;
-     let cells = document.querySelectorAll(`[data-row="${c+1}"]`)
-        cells.forEach(cell => {
-            if (cell.classList != "cell"){
-                count +=1;
-            }
-    });
+    
 }
+
 
 
 rebuildTable();
