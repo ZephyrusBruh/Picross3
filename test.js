@@ -151,7 +151,6 @@ function buildTable(rows, cols){
             }
             if (i != 0 && j != 0){
                 let binary =  getRandomBinary();
-                //let binary = 1;
                 row += `<td class="${classes}" data-row="${i}" data-col="${j}" data-binary="${binary}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
             } else {
                 row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
@@ -322,5 +321,5 @@ function cyrb128(str) {
 
 
   function getRandomBinary(){
-    return  Math.floor(rand() * 10) % 2;
+    return Math.floor(rand() * 10) % 2;
   }
