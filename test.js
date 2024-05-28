@@ -4,8 +4,8 @@ const table = document.getElementById("board");
 const dimenstionSelect = document.getElementById("dimensions");
 const cell = document.getElementsByClassName("cell")
 document.addEventListener('contextmenu', event => event.preventDefault());
+
 window.onload = start();
-const randomBinary = getRandomBinary();
 button.addEventListener("click", handleLeftClick);
 var guesses = 0;
 var wrongguesses = 0;
@@ -54,6 +54,7 @@ function start(){
 
 // Function to handle left click
 function handleLeftClick(event) {
+    console.log("cry");
     rebuildTable();
     updateWrong();
     updateProgress();
@@ -155,8 +156,9 @@ function buildTable(rows, cols){
     }
     tablehtml += "</tbody>";
     table.innerHTML = tablehtml;
-
+    addBinary(rows, cols);
     numbers(rows, cols);
+    
 }
 
 function numbers(rows,cols){
@@ -320,4 +322,9 @@ function cyrb128(str) {
   const getRand = sfc32(seedgen(), seedgen(), seedgen(), seedgen());
   for(let i=0; i<10; i++) console.log(Math.floor(getRand() * 10) % 2);
   
-  
+  function addBinary(rows, cols){
+    for(let i=0; i<rows; i++){
+        var cell = document.querySelectorAll(`[data-row="${i+1}"] [data-col="${i}"]`);
+        cell.classList.add("1");
+    }
+  }
