@@ -18,17 +18,26 @@ footer {
     position: absolute;
 }
 button{
-    padding: 1px;
+    padding: 3px;
+    font-size: 20px;
 }
 select{
-    padding: 1px;
+    padding: 3px;
+    font-size: 20px;
+}
+#testButton{
+    font-size: 20px;
+}
+#seedStart{
+    padding: 3px;
+    font-size: 20px;
 }
 
 body {
     background-color: #AFAFAF;
     color: darkblue;
     padding: 30px;
-    font-size: 25px;
+    font-size: 30px;
 }
 .reef {
     background-color: #212121;
@@ -53,8 +62,8 @@ body {
 }
 
 .cell{
-    min-width: 25px;
-    height: 25px;
+    min-width: 45px;
+    height: 45px;
     border-right: 1px solid rgb(112, 112, 112);
     border-top: 1px solid rgb(112, 112, 112);
     border-spacing:0;

@@ -5,7 +5,6 @@ const dimenstionSelect = document.getElementById("dimensions");
 const cell = document.getElementsByClassName("cell")
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-window.onload = start();
 button.addEventListener("click", handleLeftClick);
 var guesses = 0;
 var wrongguesses = 0;
@@ -14,6 +13,13 @@ var totalguesses = 0;
 var progress = 0;
 
 
+var seed = cyrb128("Dog");
+// Four 32-bit component hashes provide the seed for sfc32.
+var rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
+//const seedgen = () => (rand());
+//const getRand = sfc32(seedgen(), seedgen(), seedgen(), seedgen());
+
+window.onload = start();
 // Function to update the variable based on selected radio button
 function updateVariable() {
     var radios = document.getElementsByName('Mode');
@@ -144,8 +150,8 @@ function buildTable(rows, cols){
                 classes += " firstcol";
             }
             if (i != 0 && j != 0){
-                //let binary =  getRandomBinary();
-                let binary = 1;
+                let binary =  getRandomBinary();
+                //let binary = 1;
                 row += `<td class="${classes}" data-row="${i}" data-col="${j}" data-binary="${binary}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
             } else {
                 row += `<td class="${classes}" data-row="${i}" data-col="${j}" onClick="handleCellClick(this)" onContextMenu="handleCellRightclick(this)"></td>`;
@@ -156,7 +162,6 @@ function buildTable(rows, cols){
     }
     tablehtml += "</tbody>";
     table.innerHTML = tablehtml;
-    addBinary(rows, cols);
     numbers(rows, cols);
     
 }
@@ -299,12 +304,8 @@ function cyrb128(str) {
     return [h1>>>0, h2>>>0, h3>>>0, h4>>>0];
   }
   
-  var seed = cyrb128("apples");
-  // Four 32-bit component hashes provide the seed for sfc32.
-  var rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
-  // You can now generate repeatable sequences of random numbers:
-  rand(); // 0.8865117691457272
-  rand(); // 0.24518639338202775
+
+
   
   function sfc32(a, b, c, d) {
   return function() {
@@ -318,13 +319,8 @@ function cyrb128(str) {
     return (t >>> 0) / 4294967296;
   }
   }
-  const seedgen = () => (8);
-  const getRand = sfc32(seedgen(), seedgen(), seedgen(), seedgen());
-  for(let i=0; i<10; i++) console.log(Math.floor(getRand() * 10) % 2);
-  
-  function addBinary(rows, cols){
-    for(let i=0; i<rows; i++){
-        var cell = document.querySelectorAll(`[data-row="${i+1}"] [data-col="${i}"]`);
-        cell.classList.add("1");
-    }
+
+
+  function getRandomBinary(){
+    return  Math.floor(rand() * 10) % 2;
   }
