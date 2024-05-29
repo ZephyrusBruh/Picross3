@@ -3,6 +3,7 @@ const button = document.getElementById("testButton");
 const table = document.getElementById("board");
 const dimenstionSelect = document.getElementById("dimensions");
 const cell = document.getElementsByClassName("cell")
+const seedtext = document.getElementById("seedStart")
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 button.addEventListener("click", handleLeftClick);
@@ -13,7 +14,7 @@ var totalguesses = 0;
 var progress = 0;
 
 
-var seed = cyrb128("Dog");
+var seed = cyrb128(Math.random().toString());
 // Four 32-bit component hashes provide the seed for sfc32.
 var rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
 //const seedgen = () => (rand());
@@ -61,6 +62,11 @@ function start(){
 // Function to handle left click
 function handleLeftClick(event) {
     console.log("cry");
+    if(seedtext.value != ""){
+        seed = cyrb128(seedtext.value);
+        rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
+    }
+    seedtext.value = "";
     rebuildTable();
     updateWrong();
     updateProgress();
