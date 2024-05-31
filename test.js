@@ -100,10 +100,12 @@ function handleCellClick(element){
 
         }
         if(element.dataset.binary == 0){
+            console.log(wrongguesses);
             if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
                 element.classList.add("wrong");
                 element.classList.add("rselected");
                 wrongguesses +=1;
+                
              }
         }
         endGame();
@@ -117,16 +119,15 @@ function handleCellRightclick(element){
             if(element.classList != "cell selected"){
                 element.classList.add("wrong");
                 element.classList.add("selected");
-                if(element.classList != "cell rselected" && !element.classList.contains("wrong")){
-                    wrongguesses += 1;
-                    
-                }
+                wrongguesses += 1;
+                guesses += 1;
+                totalguesses +=1
             }
         }
         if(element.dataset.binary == 0){
             if(element.classList != "cell selected" && !element.classList.contains("wrong")){
                 element.classList.add("rselected");
-
+                console.log(wrongguesses);
 
             }
         }
