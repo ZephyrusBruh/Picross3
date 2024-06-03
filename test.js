@@ -285,7 +285,7 @@ function updateProgress(){
 }
 
 function crossOuts(rows, cols){
-    
+
 }
 
 
